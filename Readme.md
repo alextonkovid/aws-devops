@@ -26,13 +26,16 @@ Workflow includes all jobs
 
 
 Variables are defined in a separate variables file.
+
 [variables.tf](variables.tf)
 
 Resources are separated into different files for better organization.
+
 ![alt text](img/image-1.png)
 
 
 Terraform plan is executed successfully for GithubActionsRole
+
 ![alt text](img/image33.png)
 
 A GitHub Actions (GHA) pipeline is passing
