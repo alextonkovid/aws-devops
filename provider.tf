@@ -12,8 +12,3 @@ terraform {
     encrypt = true
   }
 }
-
-provider "aws" {
-  region = var.default_zone
-}
-
