@@ -53,7 +53,7 @@ variable "egress_cidr" {
 
 variable "ingress_ports" {
   description = "Ingress ports for TCP"
-  type        = object({
+  type = object({
     from_port = number
     to_port   = number
   })
