@@ -69,18 +69,18 @@ resource "aws_instance" "nat_instance" {
   }
 }
 
-# Private Instance
-resource "aws_instance" "private_instance" {
-  ami             = data.aws_ami.ubuntu.id
-  instance_type   = "t2.micro"
-  subnet_id       = aws_subnet.private_subnet_1.id
-  key_name        = var.key_pair_name
-  security_groups = [aws_security_group.private_instance_sg.id]
+# # Private Instance
+# resource "aws_instance" "private_instance" {
+#   ami             = data.aws_ami.ubuntu.id
+#   instance_type   = "t2.micro"
+#   subnet_id       = aws_subnet.private_subnet_1.id
+#   key_name        = var.key_pair_name
+#   security_groups = [aws_security_group.private_instance_sg.id]
 
-  tags = {
-    Name = "private_instance"
-  }
-}
+#   tags = {
+#     Name = "private_instance"
+#   }
+# }
 
 # Elastic IP for NAT instance
 resource "aws_eip" "nat_eip" {
