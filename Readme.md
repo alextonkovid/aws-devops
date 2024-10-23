@@ -11,7 +11,7 @@ You can find the Terraform configuration for setting up the Kubernetes (K8s) clu
 
 ### Cluster is accesible from local machine
 
-![alt text](img/image.png)
+![alt text](img/ima2ge.png)
 
 ### Node Status
 The following screenshot shows the result of the `kubectl get nodes` command, verifying that the Kubernetes cluster is up and running:
