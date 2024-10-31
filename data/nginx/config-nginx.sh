@@ -4,9 +4,14 @@
 CONFIG_SOURCE="/tmp/nginx.conf"
 CONFIG_DESTINATION="/etc/nginx/nginx.conf"
 
+echo "Update repo"
+sudo yum update -y
+
+echo "Installing nginx"
+sudo yum install -y nginx
+
 echo "Starting NGINX configuration update"
-yum update -y
-yum install -y nginx
+
 # Step 1: Copy the configuration file
 if sudo cp "$CONFIG_SOURCE" "$CONFIG_DESTINATION"; then
     echo "Copied nginx.conf to $CONFIG_DESTINATION"
