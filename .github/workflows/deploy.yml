@@ -4,6 +4,7 @@ on:
 env:
   BUCKET_NAME : "terraform-backend-alextonkovid"
   AWS_REGION : "eu-west-3"
+  TF_VAR_ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 permissions:
   id-token: write   
   contents: read   

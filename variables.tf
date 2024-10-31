@@ -62,3 +62,7 @@ variable "ingress_ports" {
     to_port   = 65535
   }
 }
+
+variable "ssh_private_key" {
+  sensitive = true
+}

@@ -4,11 +4,11 @@ resource "terraform_data" "bootstrap-k3s" {
   connection {
     type                = "ssh"
     user                = "ubuntu"
-    private_key         = ${{ secrets.SSH_PRIVATE_KEY }}
+    private_key         = var.ssh_private_key
     host                = aws_instance.k3s_instance.private_ip
     bastion_host        = aws_eip.nat_eip.public_ip
     bastion_user        = "ec2-user"
-    bastion_private_key = ${{ secrets.SSH_PRIVATE_KEY }}
+    bastion_private_key = var.ssh_private_key
   }
 
   provisioner "file" {
@@ -21,18 +21,17 @@ resource "terraform_data" "bootstrap-k3s" {
       "chmod +x /tmp/data/bootstrap-k3s.sh",
       "/tmp/data/bootstrap-k3s.sh args",
     ]
-
-
   }
+  # For local configs copy
+  
+  # provisioner "local-exec" {
+  #   command = "bash data/copy-kube-conf.sh"
 
-  provisioner "local-exec" {
-    command = "bash data/copy-kube-conf.sh"
-
-    environment = {
-      PRIVATE_INSTANCE_IP = aws_instance.k3s_instance.private_ip
-      BASTION_HOST_IP     = aws_eip.nat_eip.public_ip
-    }
-  }
+  #   environment = {
+  #     PRIVATE_INSTANCE_IP = aws_instance.k3s_instance.private_ip
+  #     BASTION_HOST_IP     = aws_eip.nat_eip.public_ip
+  #   }
+  # }
 }
 
 resource "terraform_data" "bootstrap-bastion" {
@@ -41,7 +40,7 @@ resource "terraform_data" "bootstrap-bastion" {
   connection {
     type        = "ssh"
     user        = "ec2-user"
-    private_key = ${{ secrets.SSH_PRIVATE_KEY }}
+    private_key = var.ssh_private_key
     host        = aws_eip.nat_eip.public_ip
   }
 
@@ -50,14 +49,11 @@ resource "terraform_data" "bootstrap-bastion" {
     destination = "/tmp"
   }
 
-
-
-  provisioner "local-exec" {
-    command = "ssh -tt ec2-user@$BASTION_HOST_IP \"sudo bash /tmp/config-nginx.sh\""
-
-    environment = {
-      BASTION_HOST_IP = aws_eip.nat_eip.public_ip
-    }
-  }
+  provisioner "remote-exec" {
+  inline = [
+    "chmod +x /tmp/config-nginx.sh",
+    "/tmp/config-nginx.sh args",
+  ]
+}
 
 }
