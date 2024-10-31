@@ -4,11 +4,11 @@ resource "terraform_data" "bootstrap-k3s" {
   connection {
     type                = "ssh"
     user                = "ubuntu"
-    private_key         = file("~/.ssh/id_ed25519")
+    private_key         = ${{ secrets.SSH_PRIVATE_KEY }}
     host                = aws_instance.k3s_instance.private_ip
     bastion_host        = aws_eip.nat_eip.public_ip
     bastion_user        = "ec2-user"
-    bastion_private_key = file("~/.ssh/id_ed25519")
+    bastion_private_key = ${{ secrets.SSH_PRIVATE_KEY }}
   }
 
   provisioner "file" {
@@ -41,7 +41,7 @@ resource "terraform_data" "bootstrap-bastion" {
   connection {
     type        = "ssh"
     user        = "ec2-user"
-    private_key = file("~/.ssh/id_ed25519")
+    private_key = ${{ secrets.SSH_PRIVATE_KEY }}
     host        = aws_eip.nat_eip.public_ip
   }
 

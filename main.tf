@@ -24,14 +24,7 @@ resource "aws_instance" "nat_instance" {
   key_name          = var.key_pair_name
   security_groups   = [aws_security_group.nat_sg.id]
   source_dest_check = false
-
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y nginx
-              service nginx start
-              EOF
-
+  
   tags = {
     Name = "nat_instance"
   }
