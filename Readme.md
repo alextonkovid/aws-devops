@@ -1,35 +1,41 @@
-# Submission: Terraform Code for K8s Cluster and Bastion Host
+# Task 4: Jenkins Installation and Configuration
 
-## Terraform Code
-You can find the Terraform configuration for setting up the Kubernetes (K8s) cluster and the bastion host in the following file:
 
-[View the code here](main.tf)
+## Submission
 
----
+- Provide a PR with the Helm chart for Jenkins deployment in a new repository.
+- Ensure that Jenkins is accessible via intenet. [Setup reverse proxy](https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-reverse-proxy-on-ubuntu-22-04) if you are working in the environment behind the bastion host.
+- Provide a screenshot of the Jenkins freestyle project log showing "Hello world".
+- Provide a PR with the GHA pipeline code for Jenkins deployment.
+- Document the authentication and security configurations in a README file.
 
-## K8s Cluster Verification
+## Evaluation Criteria (100 points for covering all criteria)
 
-### Cluster is accesible from local machine
+1. **Helm Installation and Verification (10 points)**
 
-![alt text](img/imag2e.png)
+   - Helm is installed and verified by deploying the Nginx chart.
 
-### Node Status
-The following screenshot shows the result of the `kubectl get nodes` command, verifying that the Kubernetes cluster is up and running:
+2. **Cluster Requirements (10 points)**
 
-![Kubernetes Nodes](img/image.png)
+   - The cluster has a solution for managing persistent volumes (PV) and persistent volume claims (PVC).
 
----
+3. **Jenkins Installation (50 points)**
 
-## Workload Deployment
+   - Jenkins is installed using Helm in a separate namespace.
+   - Jenkins is available from the internet.
 
-The simple workload has been successfully deployed and is running on the Kubernetes cluster. Below is a screenshot that confirms the deployment status:
+4. **Jenkins Configuration (10 points)**
 
-![Workload Deployment](img/image-1.png)
+   - Jenkins configuration is stored on a persistent volume and is not lost when Jenkins' pod is terminated.
 
----
+5. **Verification (10 points)**
 
-## Monitoring Setup
+   - A simple Jenkins freestyle project is created and runs successfully, writing "Hello world" into the log.
+![alt text](img/image.png)
 
-Monitoring has been configured for the cluster. Here's a screenshot of the monitoring setup in action:
 
-![Monitoring Setup](img/image-2.png)
+6. **Additional Tasks (10 points)**
+   - **GitHub Actions (GHA) Pipeline (5 points)**
+     - A GHA pipeline is set up to deploy Jenkins.
+   - **Authentication and Security (5 points)**
+     - Authentication and security settings are configured for Jenkins.
