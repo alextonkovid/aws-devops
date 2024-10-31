@@ -10,6 +10,17 @@ sudo yum update -y
 echo "Installing nginx"
 sudo yum install -y nginx
 
+
+# Start NGINX
+if sudo service nginx start; then
+    echo "NGINX start command executed successfully"
+else
+    echo "Failed to srart NGINX"
+    exit 1
+fi
+
+echo "NGINX Started"
+
 echo "Starting NGINX configuration update"
 
 # Step 1: Copy the configuration file

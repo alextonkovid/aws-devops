@@ -74,6 +74,12 @@ check_command "Getting Jenkins admin password secret"
 echo "Jenkins admin password:"
 echo $(echo $secret | base64 --decode)
 
+# Wait until the directory is created
+while [ ! -d "/data/jenkins-volume" ]; do
+    echo "Waiting for /data/jenkins-volume to be created..."
+    sleep 2
+done
+
 sudo chmod -R 777 /data/jenkins-volume
 
 echo "Done!"
