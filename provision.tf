@@ -23,7 +23,7 @@ resource "terraform_data" "bootstrap-k3s" {
     ]
   }
   # For local configs copy
-  
+
   # provisioner "local-exec" {
   #   command = "bash data/copy-kube-conf.sh"
 
@@ -50,10 +50,10 @@ resource "terraform_data" "bootstrap-bastion" {
   }
 
   provisioner "remote-exec" {
-  inline = [
-    "chmod +x /tmp/config-nginx.sh",
-    "/tmp/config-nginx.sh args",
-  ]
-}
+    inline = [
+      "chmod +x /tmp/config-nginx.sh",
+      "/tmp/config-nginx.sh args",
+    ]
+  }
 
 }

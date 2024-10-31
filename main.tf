@@ -24,7 +24,7 @@ resource "aws_instance" "nat_instance" {
   key_name          = var.key_pair_name
   security_groups   = [aws_security_group.nat_sg.id]
   source_dest_check = false
-  
+
   tags = {
     Name = "nat_instance"
   }
