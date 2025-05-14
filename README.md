@@ -10,7 +10,7 @@ I installed and configured AWS CLI v2 and Terraform on my local machine. In AWS,
 
 Using Terraform, I created networking infrastructure for a Kubernetes cluster. Implemented a VPC with either public-only and a combination of public/private subnets, based on cost and use case. Routing ensured internet access for all subnets. Verified the setup by launching an EC2 instance and pinging external IPs. Configuration used the AWS profile set up in Task 1.
 
-## Task 3: K8s Cluster Configuration and Creation  
+## Task 3: K3s Cluster Configuration and Creation  
 [Task 3 Code](https://github.com/alextonkovid/aws-devops/tree/task_3)  
 
 I configured and deployed a Kubernetes cluster on AWS using k3s, choosing the method best suited for resource management and cost efficiency. Extended Terraform code to provision required AWS resources, including a bastion host. Deployed the cluster and accessed it via `kubectl get nodes`. Verified functionality by deploying and running a simple pod workload. Additionally, set up monitoring for the cluster using Prometheus and Grafana to ensure operational visibility.
@@ -32,7 +32,7 @@ I configured a Jenkins pipeline to automate the deployment of an application to 
 
 1. **Docker Image Creation and ECR Storage**  
    - Built a Docker image for the application and stored it in AWS ECR.  
-   - Configured K8s nodes to access ECR by updating the instance profile.  
+   - Configured K3s nodes to access ECR by updating the instance profile.  
 
 2. **Helm Chart Creation**  
    - Developed and manually tested a Helm chart for the application.  
@@ -42,13 +42,13 @@ I configured a Jenkins pipeline to automate the deployment of an application to 
    - Unit test execution.  
    - Security check using SonarQube.  
    - Docker image build and push to ECR.  
-   - Helm-based deployment to the K8s cluster.  
+   - Helm-based deployment to the K3s cluster.  
 
 4. **Notifications and Documentation**  
    - Configured notifications for pipeline success or failure.  
    - Documented the setup and deployment process in a detailed README file.  
 
-## Task 7: Prometheus Deployment on K8s  
+## Task 7: Prometheus Deployment on K3s  
 [Task 7 Code](https://github.com/alextonkovid/aws-devops-provision/tree/task_7)  
 
 I installed Prometheus on my Kubernetes cluster using the Bitnami Helm chart. Configured necessary exporters to collect Kubernetes-specific metrics like node memory usage. 
